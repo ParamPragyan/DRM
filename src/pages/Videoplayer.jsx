@@ -133,7 +133,7 @@ const VideoPlayer = () => {
   };
 
   return (
-    <div>
+    <div className="h-[100vh] overflow-hidden flex justify-center items-center">
       <button
         onClick={handleBackClick}
         className="absolute top-6 left-6 flex items-center px-4 py-2 bg-[#3f99ad] text-white rounded-full shadow-lg hover:bg-[#53acb8] transition duration-300"
@@ -148,16 +148,16 @@ const VideoPlayer = () => {
         </div>
       )} */}
 
-      <div style={{ textAlign: "center", margin: "20px" }}>
+      <div className="h-full" style={{ textAlign: "center", margin: "20px" }}>
         <h2 style={{ fontSize: "4.5rem" }}>{selectedVideo.video.title}</h2>
         <div className="flex justify-center mt-6">
           <video
             ref={videoRef}
             id="video"
             controls
-            width="640"
-            height="360"
-            className="w-2/3 h-auto bg-black border border-gray-300 rounded-lg mt-4 shadow-md"
+            width="800"
+            // height="360"
+            className=" h-auto bg-black border border-gray-300 rounded-lg mt-4 shadow-md"
           />
         </div>
         {/* Additional content */}
