@@ -16,7 +16,7 @@ const VideoList = () => {
     const fetchVideos = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/videos/videos`,
+          `https://drm-backend-gvrt.onrender.com/api/videos/videos`,
           {
             method: "GET",
             // HTTP method
@@ -58,7 +58,7 @@ const VideoList = () => {
     try {
       // Encode the title to ensure it's safe for use in a URL
       const response = await fetch(
-        `http://localhost:5000/api/videos/videos/${encodeURIComponent(title)}`,
+        `https://drm-backend-gvrt.onrender.com/api/videos/videos/${encodeURIComponent(title)}`,
         {
           method: "GET",
           headers: {

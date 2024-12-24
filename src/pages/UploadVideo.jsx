@@ -31,7 +31,7 @@ const UploadVideo = () => {
     formData.append("title", encodedTitle);
   
     try {
-      const response = await fetch("http://localhost:5000/api/videos/upload", {
+      const response = await fetch("https://drm-backend-gvrt.onrender.com/api/videos/upload", {
         method: "POST",
         body: formData,
       });
