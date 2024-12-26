@@ -43,27 +43,27 @@
 
 // export default VideoPlayer;
 
-import React, { useEffect, useRef, useState } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { BiArrowBack } from "react-icons/bi";
-import { BounceLoader } from "react-spinners";
-import shaka from "shaka-player";
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { BiArrowBack } from 'react-icons/bi';
+import { BounceLoader } from 'react-spinners';
+import shaka from 'shaka-player';
 
 const VideoPlayer = () => {
   const videoRef = useRef(null); // Reference to the video element
-  const { title } = useParams(); // Get video ID from URL
+  const { id } = useParams(); // Get video ID from URL
   const location = useLocation(); // Get the location object
   const navigate = useNavigate();
   const selectedVideo = location.state?.selectedVideo; // Access the passed state
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const drmConfig = {
     servers: {
-      "com.widevine.alpha":
-        "https://license-global.pallycon.com/ri/licenseManager.do", // Widevine license server
+      'com.widevine.alpha':
+        'https://license-global.pallycon.com/ri/licenseManager.do', // Widevine license server
 
-      "com.microsoft.playready":
-        "https://license-global.pallycon.com/ri/licenseManager.do", // PlayReady license server
+      'com.microsoft.playready':
+        'https://license-global.pallycon.com/ri/licenseManager.do', // PlayReady license server
     },
   };
 
@@ -77,25 +77,25 @@ const VideoPlayer = () => {
     // Add custom headers to license requests
     player.getNetworkingEngine().registerRequestFilter((type, request) => {
       if (type === shaka.net.NetworkingEngine.RequestType.LICENSE) {
-        request.headers["pallycon-customdata-v2"] =
+        request.headers['pallycon-customdata-v2'] =
           selectedVideo.video.licenseToken;
       }
     });
-    player.addEventListener("error", onErrorEvent);
+    player.addEventListener('error', onErrorEvent);
     try {
       await player.load(selectedVideo.video.dashMpdUrl);
-      console.log("The video has now been loaded!");
+      console.log('The video has now been loaded!');
     } catch (error) {
       onError(error);
     }
   };
 
   const onErrorEvent = (event) => {
-    console.error("Error event:", event.detail);
+    console.error('Error event:', event.detail);
   };
 
   const onError = (error) => {
-    console.error("Error code:", error.code, "Details:", error.data);
+    console.error('Error code:', error.code, 'Details:', error.data);
   };
 
   const initApp = () => {
@@ -104,7 +104,7 @@ const VideoPlayer = () => {
     if (shaka.Player.isBrowserSupported()) {
       initPlayer();
     } else {
-      console.error("Browser not supported!");
+      console.error('Browser not supported!');
     }
   };
 
@@ -124,10 +124,10 @@ const VideoPlayer = () => {
   const handleBackClick = (e) => {
     e.preventDefault();
     setIsLoading(true); // Show spinner when the back button is clicked
-    
+
     // Delay navigation to ensure spinner is visible
     setTimeout(() => {
-      navigate("/videoList"); // Navigate after the timeout
+      navigate('/videoList'); // Navigate after the timeout
       setIsLoading(false); // Hide spinner after navigation
     }, 500); // Adjust delay to give enough time for the spinner to show
   };
@@ -148,8 +148,8 @@ const VideoPlayer = () => {
         </div>
       )} */}
 
-      <div className="h-full" style={{ textAlign: "center", margin: "20px" }}>
-        <h2 style={{ fontSize: "4.5rem" }}>{selectedVideo.video.title}</h2>
+      <div className="h-full" style={{ textAlign: 'center', margin: '20px' }}>
+        <h2 style={{ fontSize: '4.5rem' }}>{selectedVideo.video.title}</h2>
         <div className="flex justify-center mt-6">
           <video
             ref={videoRef}
@@ -161,8 +161,11 @@ const VideoPlayer = () => {
           />
         </div>
         {/* Additional content */}
-        <div style={{ fontSize: "2.5rem", marginTop: "10px" }}>
-          <div>"Shaka Player streams video content with robust DRM protection enabled."</div>
+        <div style={{ fontSize: '2.5rem', marginTop: '10px' }}>
+          <div>
+            "Shaka Player streams video content with robust DRM protection
+            enabled."
+          </div>
         </div>
       </div>
     </div>
