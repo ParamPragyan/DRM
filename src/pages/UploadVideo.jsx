@@ -145,7 +145,7 @@ const UploadVideo = () => {
               {/* Custom "Browse Video" button */}
               {!videoFile && (
                 <button
-                  className="absolute bottom-4 bg-[#9caa71] text-white px-8 py-4 text-[1.8rem] rounded-md hover:bg-[#bdcc8f] transition"
+                  className="absolute bottom-4 bg-[#399db6] text-white px-8 py-4 text-[1.8rem] rounded-md hover:bg-[#5ebfd8] transition"
                   type="button"
                   onClick={() => document.getElementById('fileInput').click()}
                 >
@@ -166,7 +166,7 @@ const UploadVideo = () => {
               <div className="">
                 {' '}
                 <button
-                  className="bg-[#86a037] text-white px-8 py-4  text-[1.8rem] rounded-md hover:bg-[#acce46] transition flex items-center justify-center gap-8  "
+                  className="bg-[#399db6] text-white px-8 py-4  text-[1.8rem] rounded-md hover:bg-[#5ebfd8] transition flex items-center justify-center gap-8  "
                   type="submit"
                 >
                   Upload
@@ -176,7 +176,7 @@ const UploadVideo = () => {
               </div>
             ) : (
               <button
-                  className="bg-[#a5a5a5] text-white px-8 py-4  text-[1.8rem] rounded-md hover:bg-[#acce46] transition flex items-center justify-center gap-8  "
+                  className="bg-[#399db6] text-white px-8 py-4  text-[1.8rem] rounded-md hover:bg-[#5ebfd8] transition flex items-center justify-center gap-8  "
                   type="submit"
                 >
                   Upload
