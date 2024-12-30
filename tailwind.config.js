@@ -2,7 +2,11 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        neomorphism: '8px 8px 16px #bebebe, -8px -8px 16px #ffffff',
+      },
+    },
   },
   plugins: [],
 };

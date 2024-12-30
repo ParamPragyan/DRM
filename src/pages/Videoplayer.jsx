@@ -157,7 +157,7 @@ const VideoPlayer = () => {
             controls
             width="800"
             // height="360"
-            className=" h-auto bg-black border border-gray-300 rounded-lg mt-4 shadow-md"
+            className=" h-auto border border-gray-300 rounded-lg mt-4 shadow-neomorphism px-6 py-3 text-gray-800 font-semibold"
           />
         </div>
         {/* Additional content */}
