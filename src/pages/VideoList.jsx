@@ -102,14 +102,14 @@ const VideoList = () => {
                 >
                   {/* Video Thumbnail with YouTube Aspect Ratio */}
                   <div className="relative w-full pb-[56.25%] bg-black">
-                    <div
+                    <img
                       className="absolute top-0 left-0 w-full h-full object-cover"
-                      src={video.videoUrl}
-                      alt={video.title}
+                      src={video.thumbnailUrl}
+                      // alt={video.title}
                     />
                     <button
                       onClick={() => getVideo(video.id)}
-                      className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-[5rem] font-bold hover:bg-opacity-75"
+                      className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 text-white text-[5rem] font-bold hover:bg-opacity-75"
                     >
                       <SlControlPlay />
                     </button>
