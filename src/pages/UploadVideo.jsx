@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { useNavigate } from 'react-router-dom';
+import { IoCloseSharp } from 'react-icons/io5';
 
 import toast, { Toaster } from 'react-hot-toast';
 import FadeLoader from 'react-spinners/FadeLoader';
@@ -23,6 +24,15 @@ const UploadVideo = () => {
     setNoti(true);
   };
 
+  const showToast2 = () => {
+    toast.error('Please provide both a title and a video file.', {
+      style: {
+        fontSize: '24px', // Adjust font size here
+        fontWeight: 'bold', // Optional: Make it bold
+      },
+    });
+  };
+
   useEffect(() => {
     if (noti === true) {
       navigate('/videoList');
@@ -38,7 +48,8 @@ const UploadVideo = () => {
     e.preventDefault();
 
     if (!videoFile || !title) {
-      return setUploadStatus('Please provide both a title and a video file.');
+      showToast2();
+      return;
     }
 
     // Encode the title to ensure no spaces or special characters
@@ -119,7 +130,6 @@ const UploadVideo = () => {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                required
                 className="text-[1.8rem] w-full p-4 border border-gray-300 rounded-md focus:outline-none "
               />
             </div>
@@ -129,6 +139,16 @@ const UploadVideo = () => {
               onDrop={handleFileDrop}
               onDragOver={handleDragOver}
             >
+              {videoFile !== null && (
+                <button
+                  type="button"
+                  onClick={(e) => setVideoFile(null)}
+                  className="absolute text-[5rem] top-2 right-2"
+                >
+                  <IoCloseSharp />
+                </button>
+              )}
+
               {/* Video Preview or Instruction */}
               {videoFile ? (
                 <video
@@ -162,33 +182,44 @@ const UploadVideo = () => {
                 className="hidden"
               />
             </div>
-            {flag === false ? (
-              <div className="">
-                {' '}
+            {videoFile && title ? (
+              flag === false ? (
+                <div className="">
+                  {' '}
+                  <button
+                    className="bg-[#399db6] text-white px-8 py-4  text-[1.8rem] rounded-md hover:bg-[#5ebfd8] transition flex items-center justify-center gap-8  "
+                    type="submit"
+                  >
+                    Upload
+                  </button>
+                </div>
+              ) : (
                 <button
                   className="bg-[#399db6] text-white px-8 py-4  text-[1.8rem] rounded-md hover:bg-[#5ebfd8] transition flex items-center justify-center gap-8  "
                   type="submit"
                 >
                   Upload
-                
+                  <FadeLoader
+                    className="pb-8 mr-5"
+                    style={{ transform: 'scale(0.6)' }}
+                    width={5}
+                    // size={5}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
                 </button>
-              
-              </div>
+              )
             ) : (
-              <button
-                  className="bg-[#399db6] text-white px-8 py-4  text-[1.8rem] rounded-md hover:bg-[#5ebfd8] transition flex items-center justify-center gap-8  "
+              <div className="">
+                {' '}
+                <button
+                  disabled
+                  className="bg-[#848889bb] text-[#ffffffb6] px-8 py-4  text-[1.8rem] rounded-md transition flex items-center justify-center gap-8  "
                   type="submit"
                 >
                   Upload
-                  <FadeLoader
-                  className='pb-8 mr-5'
-                  style={{ transform: 'scale(0.6)' }}
-                  width={5}
-                  // size={5}
-                  aria-label="Loading Spinner"
-                  data-testid="loader"
-                />
                 </button>
+              </div>
             )}
           </form>
 
